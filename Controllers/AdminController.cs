@@ -55,6 +55,16 @@ namespace InventoryManagementSystemBackend.Controllers
             return Ok(result);
         }
 
+        // PUT: api/Admins
+        [HttpPut("update")]
+        public IActionResult PutAdmin(Admin admin)
+        {
+            _context.Admin.Update(admin);
+            var result = _context.SaveChanges();
+
+            return Ok(result);
+        }
+
         // DELETE: api/Admins/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Admin>> DeleteAdmin(int id)
