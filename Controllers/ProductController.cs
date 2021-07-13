@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using InventoryManagementSystemBackend.Data;
 using InventoryManagementSystemBackend.Model;
+using InventoryManagementSystemBackend.Repository;
 
 namespace InventoryManagementSystemBackend.Controllers
 {
@@ -16,97 +17,61 @@ namespace InventoryManagementSystemBackend.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private readonly InventoryManagementSystemBackendContext _context;
+        public readonly ProductRepository _productRepository = new ProductRepository(); 
 
-        public ProductController(InventoryManagementSystemBackendContext context)
-        {
-            _context = context;
-        }
-
-        // GET: api/Students
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProduct()
+        public IActionResult GetProducts()
         {
-            return await _context.Product.ToListAsync();
+            var products = _productRepository.getAllProducts();
+
+            return  Ok(products);
         }
 
-        // GET: api/Students/5
+        // GET: api/product/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> GetProduct(int id)
+        public IActionResult GetProductById(int id)
         {
-            var student = await _context.Product.FindAsync(id);
+            var product = _productRepository.getProductById(id);
 
-            if (student == null)
+            if (product == null)
             {
                 return NotFound();
             }
-
-            return student;
+            return Ok(product);
         }
 
-        // PUT: api/Students/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutProduct(int id, Product student)
+
+        // POST: api/product/add
+        [HttpPost("add")]
+        public IActionResult AddProduct([FromBody] Product product)
         {
-            if (id != student.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(student).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!StudentExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            var new_product = _productRepository.addProduct(product);
+        
+            return Ok(new_product);
         }
 
-        // POST: api/Students
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
-        public async Task<ActionResult<Product>> PostStudent(Product student)
+        // PUT: api/product/update
+        [HttpPut("update")]
+        public IActionResult UpdateProduct([FromBody] Product product)
         {
-            _context.Product.Add(student);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetStudent", new { id = student.Id }, student);
+            var updated_product = _productRepository.updateProduct(product);
+        
+            return Ok(updated_product);
         }
 
-        // DELETE: api/Students/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Product>> DeleteStudent(int id)
+        // DELETE: api/product/delete/5
+        [HttpDelete("delete/{id}")]
+        public IActionResult DeleteProduct(int id)
         {
-            var student = await _context.Product.FindAsync(id);
-            if (student == null)
-            {
+        
+            var isDeleted = _productRepository.deleteProduct(id);
+            if (!isDeleted){
                 return NotFound();
             }
 
-            _context.Product.Remove(student);
-            await _context.SaveChangesAsync();
-
-            return student;
+            return Ok("Product deleted Successfully.");
         }
 
-        private bool StudentExists(int id)
-        {
-            return _context.Product.Any(e => e.Id == id);
-        }
+
     }
 }

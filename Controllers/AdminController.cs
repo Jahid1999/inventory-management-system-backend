@@ -26,7 +26,7 @@ namespace InventoryManagementSystemBackend.Controllers
 
         public readonly AdminRepository _adminRepository = new AdminRepository();
 
-        // GET: api/Admins
+        // GET: api/admin
         [HttpGet]
         public IActionResult GetAdmin()
         {
@@ -35,7 +35,7 @@ namespace InventoryManagementSystemBackend.Controllers
             return  Ok(admins);
         }
 
-        // GET: api/Admins/5
+        // GET: api/admin/5
         [HttpGet("{id}")]
         public IActionResult GetAdminById(int id)
         {
@@ -49,7 +49,7 @@ namespace InventoryManagementSystemBackend.Controllers
         }
 
 
-        // POST: api/Admins
+        // POST: api/admin/register
         [HttpPost("register")]
         public IActionResult PostAdmin([FromBody] Admin admin)
         {
@@ -58,7 +58,7 @@ namespace InventoryManagementSystemBackend.Controllers
             return Ok(newAdmin);
         }
 
-        // PUT: api/Admins
+        // PUT: api/admin/update
         [HttpPut("update")]
         public IActionResult PutAdmin([FromBody] Admin admin)
         {
@@ -67,7 +67,7 @@ namespace InventoryManagementSystemBackend.Controllers
             return Ok(updated_admin);
         }
 
-        // DELETE: api/Admins/5
+        // DELETE: api/admin/delete/5
         [HttpDelete("delete/{id}")]
         public IActionResult DeleteAdmin(int id)
         {

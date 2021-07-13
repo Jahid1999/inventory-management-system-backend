@@ -14,40 +14,40 @@ namespace InventoryManagementSystemBackend.Repository
 {
     public class ProductRepository : DatabaseRepository
     {
-       public  List<Admin> getAllAdmins() {
-           return  databaseContext.Admin.ToList();
+       public  List<Product> getAllProducts() {
+           return  databaseContext.Product.ToList();
        }
 
-       public Admin getAdminById(int id) {
-           var admin = databaseContext.Admin.Find(id);
+       public Product getProductById(int id) {
+           var product = databaseContext.Product.Find(id);
 
-           return admin;
+           return product;
        }
 
-       public Admin addAdmin(Admin admin_info)
+       public Product addProduct(Product product_info)
         {
-            databaseContext.Admin.Add(admin_info);
+            databaseContext.Product.Add(product_info);
             var newAdmin = databaseContext.SaveChanges();
 
-            return admin_info;
+            return product_info;
         }
 
-        public Admin updateAdmin(Admin admin_info)
+        public Product updateProduct(Product product_info)
         {
-            databaseContext.Admin.Update(admin_info);
-            var newAdmin = databaseContext.SaveChanges();
+            databaseContext.Product.Update(product_info);
+            var newProduct = databaseContext.SaveChanges();
 
-            return admin_info;
+            return product_info;
         }
 
-        public bool deleteAdmin(int id) {
-            var admin = databaseContext.Admin.Find(id);
+        public bool deleteProduct(int id) {
+            var product = databaseContext.Product.Find(id);
 
-             if (admin == null){
+             if (product == null){
                 return false;
              }
                 
-                databaseContext.Admin.Remove(admin);
+                databaseContext.Product.Remove(product);
                 databaseContext.SaveChanges();
                 
                 return true;

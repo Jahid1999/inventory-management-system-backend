@@ -7,24 +7,22 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementSystemBackend.Model
 {
-    public class Product
+    public class Stock
     {
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public int Type { get; set; }
 
         [Required]
-        public string Description { get; set; }
-
-        [Required]
-        public string Unit { get; set; }
-
-        [Required]
-        public int Price { get; set; }
-
         public int Quantity { get; set; }
+
+        [Required]
+        public int Totalprice { get; set; }
+
+        public int Productid { get; set; }
     }
 }
