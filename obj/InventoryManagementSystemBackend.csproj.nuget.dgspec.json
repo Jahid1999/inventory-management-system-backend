@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/abdullah-al-jahid/Desktop/StudentAttendence-dotnet-backend-master/InventoryManagementSystemBackend.csproj": {}
+    "/home/abdullah-al-jahid/Desktop/inventory-management-system-backend/InventoryManagementSystemBackend.csproj": {}
   },
   "projects": {
-    "/home/abdullah-al-jahid/Desktop/StudentAttendence-dotnet-backend-master/InventoryManagementSystemBackend.csproj": {
+    "/home/abdullah-al-jahid/Desktop/inventory-management-system-backend/InventoryManagementSystemBackend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/abdullah-al-jahid/Desktop/StudentAttendence-dotnet-backend-master/InventoryManagementSystemBackend.csproj",
+        "projectUniqueName": "/home/abdullah-al-jahid/Desktop/inventory-management-system-backend/InventoryManagementSystemBackend.csproj",
         "projectName": "InventoryManagementSystemBackend",
-        "projectPath": "/home/abdullah-al-jahid/Desktop/StudentAttendence-dotnet-backend-master/InventoryManagementSystemBackend.csproj",
+        "projectPath": "/home/abdullah-al-jahid/Desktop/inventory-management-system-backend/InventoryManagementSystemBackend.csproj",
         "packagesPath": "/home/abdullah-al-jahid/.nuget/packages/",
-        "outputPath": "/home/abdullah-al-jahid/Desktop/StudentAttendence-dotnet-backend-master/obj/",
+        "outputPath": "/home/abdullah-al-jahid/Desktop/inventory-management-system-backend/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "/usr/share/dotnet/sdk/NuGetFallbackFolder"

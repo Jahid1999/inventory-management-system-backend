@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "RJ9wnwhoXSrctgd/tWafoBEVSvfnRUta8CQcRpgxFQK5NBUewR2zC1Vvbh3OviZ/5Qq060KJs/TCjHPcPK1XNQ==",
+  "dgSpecHash": "5lYFhljVazIZ1lDTj1xQaZ7FzW3mVa+J0IZ6Uvt51BKRMm/5UuK+HJs2yWYygNXkr3N794YIhEAvBDg+fHh6Hw==",
   "success": true,
-  "projectFilePath": "/home/abdullah-al-jahid/Desktop/StudentAttendence-dotnet-backend-master/InventoryManagementSystemBackend.csproj",
+  "projectFilePath": "/home/abdullah-al-jahid/Desktop/inventory-management-system-backend/InventoryManagementSystemBackend.csproj",
   "expectedPackageFiles": [
     "/home/abdullah-al-jahid/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",
     "/home/abdullah-al-jahid/.nuget/packages/microsoft.aspnetcore.authentication/2.2.0/microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",

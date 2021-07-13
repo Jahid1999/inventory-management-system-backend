@@ -14,11 +14,11 @@ namespace InventoryManagementSystemBackend.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class AdminsController : ControllerBase
+    public class AdminController : ControllerBase
     {
         private readonly InventoryManagementSystemBackendContext _context;
 
-        public AdminsController(InventoryManagementSystemBackendContext context)
+        public AdminController(InventoryManagementSystemBackendContext context)
         {
             _context = context;
         }
