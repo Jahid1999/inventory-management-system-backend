@@ -9,11 +9,11 @@ namespace InventoryManagementSystemBackend.Data
 {
     public class InventoryManagementSystemBackendContext : DbContext
     {
-        public InventoryManagementSystemBackendContext (DbContextOptions<InventoryManagementSystemBackendContext> options)
-            : base(options)
-        {
-        }
-
+        // public InventoryManagementSystemBackendContext (DbContextOptions<InventoryManagementSystemBackendContext> options)
+        //     : base(options)
+        // {
+        // }
+        public const string ConnectionString = "Server=localhost;USER ID=sa;Password=Jahid123;Database=Test1;Trusted_Connection=false;MultipleActiveResultSets=true";
         public DbSet<Product> Product { get; set; }
 
         public DbSet<InventoryManagementSystemBackend.Model.Admin> Admin { get; set; }
@@ -31,6 +31,11 @@ namespace InventoryManagementSystemBackend.Data
                     Password = "iit12345"
                 }
             );
+        }
+
+         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) 
+        {
+            optionsBuilder.UseSqlServer(ConnectionString);
         }
     }
 }

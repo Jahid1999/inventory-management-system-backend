@@ -51,8 +51,8 @@ namespace InventoryManagementSystemBackend
 
             services.AddSingleton<IJwtAuthManager>(new JwtAuth(key));
 
-            services.AddDbContext<InventoryManagementSystemBackendContext>(options =>
-                       options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnectionString")));
+            // services.AddDbContext<InventoryManagementSystemBackendContext>(options =>
+            //            options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnectionString")));
 
         }
 

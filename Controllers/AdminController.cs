@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using InventoryManagementSystemBackend.Data;
 using InventoryManagementSystemBackend.Model;
+using InventoryManagementSystemBackend.Repository;
 
 namespace InventoryManagementSystemBackend.Controllers
 {
@@ -16,69 +17,67 @@ namespace InventoryManagementSystemBackend.Controllers
     [ApiController]
     public class AdminController : ControllerBase
     {
-        private readonly InventoryManagementSystemBackendContext _context;
+        // private readonly InventoryManagementSystemBackendContext _context;
 
-        public AdminController(InventoryManagementSystemBackendContext context)
-        {
-            _context = context;
-        }
+        // public AdminController(InventoryManagementSystemBackendContext context)
+        // {
+        //     _context = context;
+        // }
+
+        public readonly AdminRepository _adminRepository = new AdminRepository();
 
         // GET: api/Admins
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Admin>>> GetAdmin()
+        public IActionResult GetAdmin()
         {
-            return await _context.Admin.ToListAsync();
+            var admins = _adminRepository.getAllAdmins();
+
+            return  Ok(admins);
         }
 
         // GET: api/Admins/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Admin>> GetAdmin(int id)
+        public IActionResult GetAdminById(int id)
         {
-            var admin = await _context.Admin.FindAsync(id);
+            var admin = _adminRepository.getAdminById(id);
 
             if (admin == null)
             {
                 return NotFound();
             }
-
-            return admin;
+            return Ok(admin);
         }
 
 
         // POST: api/Admins
         [HttpPost("register")]
-        public IActionResult PostAdmin(Admin admin)
+        public IActionResult PostAdmin([FromBody] Admin admin)
         {
-            _context.Admin.Add(admin);
-            var result = _context.SaveChanges();
-
-            return Ok(result);
+            var newAdmin = _adminRepository.addAdmin(admin);
+        
+            return Ok(newAdmin);
         }
 
         // PUT: api/Admins
         [HttpPut("update")]
-        public IActionResult PutAdmin(Admin admin)
+        public IActionResult PutAdmin([FromBody] Admin admin)
         {
-            _context.Admin.Update(admin);
-            var result = _context.SaveChanges();
-
-            return Ok(result);
+            var updated_admin = _adminRepository.updateAdmin(admin);
+        
+            return Ok(updated_admin);
         }
 
         // DELETE: api/Admins/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Admin>> DeleteAdmin(int id)
+        [HttpDelete("delete/{id}")]
+        public IActionResult DeleteAdmin(int id)
         {
-            var admin = await _context.Admin.FindAsync(id);
-            if (admin == null)
-            {
+        
+            var isDeleted = _adminRepository.deleteAdmin(id);
+            if (!isDeleted){
                 return NotFound();
             }
 
-            _context.Admin.Remove(admin);
-            await _context.SaveChangesAsync();
-
-            return admin;
+            return Ok("Admin deleted Successfully.");
         }
 
     }
