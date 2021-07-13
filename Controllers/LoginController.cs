@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using InventoryManagementSystemBackend.ViewModel;
 using InventoryManagementSystemBackend.Data;
 using InventoryManagementSystemBackend.Model;
+using InventoryManagementSystemBackend.Repository;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -18,20 +19,20 @@ namespace InventoryManagementSystemBackend.Controllers
     public class LoginController : ControllerBase
     {
 
+        private readonly LoginRepository _loginRepository = new LoginRepository();
         private readonly IJwtAuthManager jwtAuthManager;
         private readonly InventoryManagementSystemBackendContext _context;
 
-        public LoginController(IJwtAuthManager jwtAuth, InventoryManagementSystemBackendContext context)
+        public LoginController(IJwtAuthManager jwtAuth)
         {
             this.jwtAuthManager = jwtAuth;
-            _context = context;
         }
 
         [AllowAnonymous]
         [HttpPost("authenticate")]
         public IActionResult Authenticate([FromBody] UserLogin userLogin)
         {
-           var entity = _context.Admin.Where(p => p.Email == userLogin.email && p.Password == userLogin.password).FirstOrDefault();
+           var entity = _loginRepository.login(userLogin);
              if (entity != null)
               {
                 var token = jwtAuthManager.Authenticate(userLogin.email, userLogin.password);
