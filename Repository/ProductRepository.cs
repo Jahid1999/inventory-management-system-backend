@@ -27,9 +27,11 @@ namespace InventoryManagementSystemBackend.Repository
        public Product addProduct(Product product_info)
         {
             databaseContext.Product.Add(product_info);
-            var newAdmin = databaseContext.SaveChanges();
 
-            return product_info;
+            var product_id = databaseContext.SaveChanges();
+            var product = databaseContext.Product.OrderBy(p => p.Id).LastOrDefault();
+
+            return product;
         }
 
         public Product updateProduct(Product product_info)
@@ -53,6 +55,41 @@ namespace InventoryManagementSystemBackend.Repository
                 return true;
 
         }
+
+        public Stock purchase(Stock purchase_info) {
+            var product = databaseContext.Product.Find(purchase_info.Productid);
+
+            if(product != null) {
+                product.Quantity += purchase_info.Quantity;
+                databaseContext.Product.Update(product);
+                databaseContext.SaveChanges();
+            }   
+            
+            databaseContext.Stock.Add(purchase_info);
+            var pur_id =databaseContext.SaveChanges();
+            // var purchase = databaseContext.Stock.OrderBy(a => a.Productid == purchase_info.Productid && a.Type == 1).LastOrDefault();
+            var purchase = databaseContext.Stock.OrderBy(a => a.Id).LastOrDefault();
+
+            return  purchase;
+        }
+
+        public Stock sale(Stock sale_info) {
+            var product = databaseContext.Product.Find(sale_info.Productid);
+
+            if(product != null) {
+                product.Quantity -= sale_info.Quantity;
+                databaseContext.Product.Update(product);
+                databaseContext.SaveChanges();
+            }   
+            
+            databaseContext.Stock.Add(sale_info);
+            var sale_id =databaseContext.SaveChanges();
+            // var sale = databaseContext.Stock.OrderBy(a => a.Productid == sale_info.Productid && a.Type == 0).LastOrDefault();
+            var sale = databaseContext.Stock.OrderBy(a => a.Id).LastOrDefault();
+
+            return  sale;
+        }
+
 
     }
 }

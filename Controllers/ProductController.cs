@@ -50,6 +50,24 @@ namespace InventoryManagementSystemBackend.Controllers
             return Ok(new_product);
         }
 
+         // POST: api/product/purchase
+        [HttpPost("purchase")]
+        public IActionResult PurchaseProduct([FromBody] Stock stock)
+        {
+            var new_product = _productRepository.purchase(stock);
+        
+            return Ok(new_product);
+        }
+
+         // POST: api/product/purchase
+        [HttpPost("sale")]
+        public IActionResult SaleProduct([FromBody] Stock stock)
+        {
+            var new_product = _productRepository.sale(stock);
+        
+            return Ok(new_product);
+        }
+
         // PUT: api/product/update
         [HttpPut("update")]
         public IActionResult UpdateProduct([FromBody] Product product)
