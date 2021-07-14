@@ -15,7 +15,7 @@ namespace InventoryManagementSystemBackend.Model
         public int Id { get; set; }
 
         [Required]
-        public int Type { get; set; }
+        public int Type { get; set; } // 0 => sale 1 => purchase;
 
         [Required]
         public int Quantity { get; set; }
@@ -24,5 +24,7 @@ namespace InventoryManagementSystemBackend.Model
         public int Totalprice { get; set; }
 
         public int Productid { get; set; }
+
+        public DateTime Treansactiondate { get; set;}
     }
 }

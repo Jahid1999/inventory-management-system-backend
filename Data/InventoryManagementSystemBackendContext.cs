@@ -13,6 +13,8 @@ namespace InventoryManagementSystemBackend.Data
         //     : base(options)
         // {
         // }
+
+        // Completed this project in my linux(ubuntu) operating system. That is why the connection string is different.
         public const string ConnectionString = "Server=localhost;USER ID=sa;Password=Jahid123;Database=Test1;Trusted_Connection=false;MultipleActiveResultSets=true";
         public DbSet<Product> Product { get; set; }
         public DbSet<Stock> Stock { get; set; }

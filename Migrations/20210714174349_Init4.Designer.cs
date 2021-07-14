@@ -4,14 +4,16 @@ using InventoryManagementSystemBackend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InventoryManagementSystemBackend.Migrations
 {
     [DbContext(typeof(InventoryManagementSystemBackendContext))]
-    partial class InventoryManagementSystemBackendContextModelSnapshot : ModelSnapshot
+    [Migration("20210714174349_Init4")]
+    partial class Init4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

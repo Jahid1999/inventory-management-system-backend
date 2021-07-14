@@ -63,7 +63,9 @@ namespace InventoryManagementSystemBackend.Repository
                 product.Quantity += purchase_info.Quantity;
                 databaseContext.Product.Update(product);
                 databaseContext.SaveChanges();
-            }   
+            } 
+
+            purchase_info.Treansactiondate = DateTime.Today;  
             
             databaseContext.Stock.Add(purchase_info);
             var pur_id =databaseContext.SaveChanges();
@@ -82,12 +84,31 @@ namespace InventoryManagementSystemBackend.Repository
                 databaseContext.SaveChanges();
             }   
             
+            sale_info.Treansactiondate = DateTime.Today;
+
             databaseContext.Stock.Add(sale_info);
             var sale_id =databaseContext.SaveChanges();
             // var sale = databaseContext.Stock.OrderBy(a => a.Productid == sale_info.Productid && a.Type == 0).LastOrDefault();
             var sale = databaseContext.Stock.OrderBy(a => a.Id).LastOrDefault();
 
             return  sale;
+        }
+
+        public List<Stock> monthlyTransactionReport(string month) {
+            var query = DateTime.Parse(month);
+
+            var transations = databaseContext.Stock.Where(a => a.Treansactiondate.Month == query.Month && a.Treansactiondate.Year == query.Year).ToList();
+
+            return transations;
+        }
+
+        public List<Stock> dailyTransactionReport(string date) {
+            var query = DateTime.Parse(date);
+
+            var transations = databaseContext.Stock
+            .Where(a => a.Treansactiondate.Day == query.Day && a.Treansactiondate.Month == query.Month && a.Treansactiondate.Year == query.Year).ToList();
+
+            return transations;
         }
 
 

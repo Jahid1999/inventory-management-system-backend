@@ -40,6 +40,32 @@ namespace InventoryManagementSystemBackend.Controllers
             return Ok(product);
         }
 
+        // GET: api/product/report/monthly/2021-07-14T00:00:00+06:00
+        [HttpGet("report/monthly/{month}")]
+        public IActionResult GetMonthlyTransactionReport(string month)
+        {
+            var transactions = _productRepository.monthlyTransactionReport(month);
+
+            if (transactions == null)
+            {
+                return NotFound();
+            }
+            return Ok(transactions);
+        }
+
+        // GET: api/product/report/daily/2021-07-14T00:00:00+06:00
+        [HttpGet("report/daily/{date}")]
+        public IActionResult GetDailyTransactionReport(string date)
+        {
+            var transactions = _productRepository.dailyTransactionReport(date);
+
+            if (transactions == null)
+            {
+                return NotFound();
+            }
+            return Ok(transactions);
+        }
+
 
         // POST: api/product/add
         [HttpPost("add")]
