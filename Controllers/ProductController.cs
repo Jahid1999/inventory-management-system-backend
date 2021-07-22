@@ -114,7 +114,7 @@ namespace InventoryManagementSystemBackend.Controllers
                 return NotFound();
             }
                 
-            return Ok("Product deleted Successfully.");
+            return Ok();
         }
 
 

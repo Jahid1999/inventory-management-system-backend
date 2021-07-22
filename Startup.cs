@@ -31,7 +31,7 @@ namespace InventoryManagementSystemBackend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            var key = "this is my custom Secret key for authnetication hguskc";
+            var key = "This is the custom secret key for jwt token. oijwdsjahidasjknsdbssenubdcub10309399839red.";
 
             services.AddAuthentication(x => {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

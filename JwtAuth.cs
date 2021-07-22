@@ -30,7 +30,7 @@ namespace InventoryManagementSystemBackend
                 {
                     new Claim(ClaimTypes.Name,password)
                 }),
-                Expires = DateTime.UtcNow.AddHours(24),
+                Expires = DateTime.UtcNow.AddHours(48),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey),SecurityAlgorithms.HmacSha256Signature)
             };
 
