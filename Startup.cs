@@ -19,6 +19,7 @@ namespace InventoryManagementSystemBackend
 {
     public class Startup
     {
+        // readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -49,6 +50,17 @@ namespace InventoryManagementSystemBackend
                 };
             });
 
+    //         services.AddCors(options =>
+    // {
+    //     options.AddPolicy(MyAllowSpecificOrigins,
+    //     builder =>
+    //     {
+    //         builder.WithOrigins("http://localhost:4200")
+    //                             .AllowAnyHeader()
+    //                             .AllowAnyMethod();
+    //     });
+    // });
+
             services.AddSingleton<IJwtAuthManager>(new JwtAuth(key));
 
             // services.AddDbContext<InventoryManagementSystemBackendContext>(options =>
@@ -70,6 +82,7 @@ namespace InventoryManagementSystemBackend
             app.UseAuthorization();
 
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            // app.UseCors(MyAllowSpecificOrigins);
 
             app.UseEndpoints(endpoints =>
             {

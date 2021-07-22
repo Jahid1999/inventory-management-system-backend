@@ -27,6 +27,7 @@ namespace InventoryManagementSystemBackend.Controllers
             return  Ok(products);
         }
 
+        
         // GET: api/product/5
         [HttpGet("{id}")]
         public IActionResult GetProductById(int id)
@@ -109,10 +110,10 @@ namespace InventoryManagementSystemBackend.Controllers
         {
         
             var isDeleted = _productRepository.deleteProduct(id);
-            if (!isDeleted){
+            if (isDeleted == false){
                 return NotFound();
             }
-
+                
             return Ok("Product deleted Successfully.");
         }
 
