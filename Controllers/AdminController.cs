@@ -51,7 +51,7 @@ namespace InventoryManagementSystemBackend.Controllers
 
         // POST: api/admin/register
         [HttpPost("register")]
-        public IActionResult PostAdmin([FromBody] Admin admin)
+        public dynamic PostAdmin([FromBody] Admin admin)
         {
             var newAdmin = _adminRepository.addAdmin(admin);
         

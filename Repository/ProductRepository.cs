@@ -24,14 +24,25 @@ namespace InventoryManagementSystemBackend.Repository
            return product;
        }
 
-       public Product addProduct(Product product_info)
+       public dynamic addProduct(Product product_info)
         {
-            databaseContext.Product.Add(product_info);
+            Product existingProduct = databaseContext.Product.SingleOrDefault(p => p.Name == product_info.Name);
+
+            if(existingProduct != null ) {
+                return new {
+                   statusCode = 202,
+                    errMsg = "Product Exist!"
+                };
+            }
+            else {
+                databaseContext.Product.Add(product_info);
 
             var product_id = databaseContext.SaveChanges();
             var product = databaseContext.Product.OrderBy(p => p.Id).LastOrDefault();
 
             return product;
+            }
+
         }
 
         public Product updateProduct(Product product_info)

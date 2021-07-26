@@ -24,12 +24,23 @@ namespace InventoryManagementSystemBackend.Repository
            return admin;
        }
 
-       public Admin addAdmin(Admin admin_info)
+       public dynamic addAdmin(Admin admin_info)
         {
-            databaseContext.Admin.Add(admin_info);
-            var newAdmin = databaseContext.SaveChanges();
+            Admin existingAdmin = databaseContext.Admin.SingleOrDefault(admin => admin.Email == admin_info.Email);
 
-            return admin_info;
+            if(existingAdmin != null ) {
+                return new {
+                   statusCode = 202,
+                    errMsg = "Admin Exist!"
+                };
+            }
+           else {
+                databaseContext.Admin.Add(admin_info);
+                var newAdmin = databaseContext.SaveChanges();
+
+                return admin_info;
+           }
+           
         }
 
         public Admin updateAdmin(Admin admin_info)

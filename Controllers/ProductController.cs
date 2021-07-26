@@ -70,7 +70,7 @@ namespace InventoryManagementSystemBackend.Controllers
 
         // POST: api/product/add
         [HttpPost("add")]
-        public IActionResult AddProduct([FromBody] Product product)
+        public dynamic AddProduct([FromBody] Product product)
         {
             var new_product = _productRepository.addProduct(product);
         
